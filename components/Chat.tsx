@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   Camera,
@@ -15,10 +15,14 @@ import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 const Chat = () => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const endRef = useRef<null | HTMLDivElement>(null);
 
   const handleEmoji = (e: EmojiClickData) => {
     setText((prev) => prev + e.emoji);
   };
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
   return (
     <div className="flex-[2] border-x border-gray-700 h-full flex flex-col">
@@ -42,7 +46,7 @@ const Chat = () => {
         </div>
       </div>
       {/* Chat Part */}
-      <div className="flex-1 p-5 overflow-scroll flex flex-col gap-5">
+      <div className="flex-1 p-5 overflow-auto flex flex-col gap-5">
         <div className="message">
           <Avatar className="w-[30px] h-[30px] object-cover">
             <AvatarImage src="https://github.com/ahmetfm.png" />
@@ -76,6 +80,7 @@ const Chat = () => {
             <span>1 min ago</span>
           </div>
         </div>
+        <div ref={endRef}></div>
       </div>
       {/* Bottom Part */}
       <div className="p-5 flex items-center justify-between border-t border-[#dddddd35] gap-5 mt-auto">
@@ -101,7 +106,7 @@ const Chat = () => {
             <EmojiPicker open={open} onEmojiClick={handleEmoji} />
           </div>
         </div>
-        <button className="bg-[#5183fe] text-white px-[10px] py-[20px] border-none rounded-[5px] cursor-pointer">
+        <button className="bg-[#5183fe] text-white py-[10px] px-[20px] border-none rounded-[5px] cursor-pointer">
           Send
         </button>
       </div>
