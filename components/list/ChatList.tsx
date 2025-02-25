@@ -2,6 +2,7 @@
 import { Minus, Plus, Search } from "lucide-react";
 import React, { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import AddUser from "./AddUser";
 
 const ChatList = () => {
   const [addMode, setAddMode] = useState(false);
@@ -41,6 +42,7 @@ const ChatList = () => {
           <p className="text-sm font-light">Last Message is</p>
         </div>
       </div>
+      {addMode && <AddUser />}
     </div>
   );
 };

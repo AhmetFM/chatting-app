@@ -1,5 +1,6 @@
 "use client";
 
+import Login from "@/components/auth/Login";
 import Chat from "@/components/Chat";
 import Detail from "@/components/Detail";
 import List from "@/components/list/List";
@@ -11,6 +12,7 @@ export default function Home() {
     (state: RootState) => state.background.index
   );
 
+  const user = true;
   return (
     <div
       className={` ${
@@ -22,9 +24,15 @@ export default function Home() {
       } bg-no-repeat bg-center bg-cover h-screen flex items-center justify-center`}
     >
       <div className="w-[80vw] h-[80vh] border-white/25 border bg-zinc-900/60 backdrop-blur-md rounded-md flex">
-        <List />
-        <Chat />
-        <Detail />
+        {user ? (
+          <>
+            <List />
+            <Chat />
+            <Detail />
+          </>
+        ) : (
+          <Login />
+        )}
       </div>
     </div>
   );
