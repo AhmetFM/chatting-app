@@ -2,24 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   color: white;
   background-repeat: no-repeat;
 }
-
 
 ::-webkit-scrollbar {
   width: 5px;
   background: transparent;
 }
 
-
 ::-webkit-scrollbar-thumb {
   background: black;
   border-radius: 10px;
 }
-
 
 @layer base {
   :root {
@@ -77,15 +73,41 @@ body {
   }
 }
 
-
-
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.message {
+  @apply max-w-[70%] flex gap-5;
+
+  &.own {
+    @apply self-end;
+
+    .texts {
+      p {
+        @apply bg-[#5183fe];
+      }
+    }
+  }
+
+  .texts {
+    @apply flex-1 flex flex-col gap-[5px];
+
+    img {
+      @apply w-full h-[300px] rounded-[10px] object-cover;
+    }
+
+    p {
+      @apply p-5 bg-zinc-900/30 rounded-[10px];
+    }
+
+    span {
+      @apply text-[13px];
+    }
   }
 }
