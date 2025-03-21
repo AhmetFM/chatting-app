@@ -4,7 +4,7 @@ import { ArrowUpIcon, Download } from "lucide-react";
 
 const Detail = () => {
   return (
-    <div className="flex-1">
+    <div className="flex-1 hidden 2xl:block">
       <div className="py-[30px] px-5 flex flex-col items-center gap-3 border-b border-[#dddddd35]">
         <Avatar className="w-[100px] h-[100px] object-cover">
           <AvatarImage src="https://github.com/ahmetfm.png" />

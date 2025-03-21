@@ -14,6 +14,7 @@ export const backgroundSlice = createSlice({
   initialState,
   reducers: {
     changeIndex: (state, action: PayloadAction<number>) => {
+      localStorage.setItem("backgroundIndex", action.payload.toString());
       state.index = action.payload
     },
   },

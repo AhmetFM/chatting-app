@@ -4,13 +4,26 @@ import Login from "@/components/auth/Login";
 import Chat from "@/components/Chat";
 import Detail from "@/components/Detail";
 import List from "@/components/list/List";
-import { useAppSelector } from "@/lib/hooks";
+import { changeIndex } from "@/lib/features/background/backgroundSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { RootState } from "@/lib/store";
+import { useEffect } from "react";
 
 export default function Home() {
   const imageIndex = useAppSelector(
     (state: RootState) => state.background.index
   );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const storedIndex = localStorage.getItem("backgroundIndex");
+    if (storedIndex) {
+      const parsedIndex = parseInt(storedIndex, 10);
+      if (!isNaN(parsedIndex)) {
+        dispatch(changeIndex(parsedIndex));
+      }
+    }
+  }, []);
 
   const user = true;
   return (
